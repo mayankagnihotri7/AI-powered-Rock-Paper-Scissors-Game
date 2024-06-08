@@ -118,3 +118,10 @@ cypress-tests/cypress/videos/
 
 # Ignore redis dump file
 dump.rdb
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

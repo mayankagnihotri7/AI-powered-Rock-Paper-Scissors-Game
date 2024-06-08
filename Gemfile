@@ -21,6 +21,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# For compiling and bundling JavaScript. Read more: https://github.com/shakacode/shakapacker
+gem "shakapacker", "~> 6.6.0"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
