@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameRoundsController < ApplicationController
   def create
     @game_round = GameRound.new(choice: params[:choice])
@@ -11,6 +13,7 @@ class GameRoundsController < ApplicationController
   end
 
   private
+
     def predict_user_choice(user)
       last_rounds = user.game_rounds.order(created_at: :desc).limit(3)
       return %w[rock paper scissor].sample if last_rounds.empty?
@@ -21,12 +24,12 @@ class GameRoundsController < ApplicationController
       predicted_choice = find_pattern(choices)
 
       case predicted_choice
-      when 'rock'
-        'paper'
-      when 'paper'
-        'scissor'
-      when 'scissor'
-        'rock'
+      when "rock"
+        "paper"
+      when "paper"
+        "scissor"
+      when "scissor"
+        "rock"
       else
         %w[rock paper scissor].sample
       end

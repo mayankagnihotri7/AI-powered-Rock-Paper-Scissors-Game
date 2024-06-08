@@ -1,0 +1,12 @@
+{
+  "[ruby]": {
+    "editor.autoClosingBrackets": "beforeWhitespace",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Shopify.ruby-lsp"
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "editor.formatOnSave": true,
+  "yaml.format.enable": true,
+}
