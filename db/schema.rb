@@ -14,12 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_27_125728) do
   create_table "game_rounds", force: :cascade do |t|
     t.string "choice"
     t.string "ai_choice"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "choice"
+    t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

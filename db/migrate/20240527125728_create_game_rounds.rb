@@ -5,6 +5,7 @@ class CreateGameRounds < ActiveRecord::Migration[7.0]
     create_table :game_rounds do |t|
       t.string :choice
       t.string :ai_choice
+      t.string :result
 
       t.timestamps
     end

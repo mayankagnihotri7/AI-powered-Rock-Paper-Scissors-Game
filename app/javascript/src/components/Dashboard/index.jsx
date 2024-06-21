@@ -106,6 +106,9 @@ const Dashboard = () => {
                 <th className="border-b border-r border-gray-300 bg-gray-100 px-4 py-2.5 text-left text-xs font-bold uppercase leading-4 text-gray-800">
                   AI choice
                 </th>
+                <th className="border-b border-r border-gray-300 bg-gray-100 px-4 py-2.5 text-left text-xs font-bold uppercase leading-4 text-gray-800">
+                  Result
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
@@ -117,6 +120,9 @@ const Dashboard = () => {
                     </td>
                     <td className="border-r border-gray-300 px-4 py-2.5 text-sm font-medium capitalize">
                       {gameRound.ai_choice}
+                    </td>
+                    <td className="border-r border-gray-300 px-4 py-2.5 text-sm font-medium capitalize">
+                      {gameRound.result}
                     </td>
                   </tr>
                 </>

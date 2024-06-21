@@ -8,12 +8,15 @@ class GameRoundsController < ApplicationController
   end
 
   def create
-    @game_round = GameRound.new(choice: game_round_params[:choice], ai_choice: predict_user_choice(GameRound.all))
+    choice = game_round_params[:choice]
+    game_round = GameRound.new(choice:)
+    game_round.ai_choice = predict_user_choice(GameRound.all)
+    game_round.result = determine_winner(choice, game_round.ai_choice)
 
-    if @game_round.save
-      render json: { game_round: @game_round }
+    if game_round.save
+      render json: { game_round: }
     else
-      render json: { error: @game_round.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: game_round.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -58,6 +61,18 @@ class GameRoundsController < ApplicationController
         choice_count = Hash.new(0)
         choices.each { |choice| choice_count[choice] += 1 }
         choice_count.max_by { |_, count| count }.first || %w[rock paper scissor].sample
+      end
+    end
+
+    def determine_winner(choice, ai_choice)
+      if choice == ai_choice
+        "tie"
+      elsif (choice == "rock" && ai_choice == "paper") ||
+        (choice == "paper" && ai_choice == "scissors") ||
+        (choice == "scissors" && ai_choice == "rock")
+        "lose"
+      else
+        "win"
       end
     end
 end
