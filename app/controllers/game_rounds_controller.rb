@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 class GameRoundsController < ApplicationController
+  def index
+    game_round = GameRound.all
+
+    render json: { game_round: }
+  end
+
   def create
-    @game_round = GameRound.new(choice: params[:choice])
-    @ai_choice = predict_user_choice(@game_round.user)
+    @game_round = GameRound.new(choice: game_round_params[:choice], ai_choice: predict_user_choice(GameRound.all))
 
     if @game_round.save
       render json: { game_round: @game_round }
@@ -14,8 +19,12 @@ class GameRoundsController < ApplicationController
 
   private
 
-    def predict_user_choice(user)
-      last_rounds = user.game_rounds.order(created_at: :desc).limit(3)
+    def game_round_params
+      params.require(:game_round).permit(:choice)
+    end
+
+    def predict_user_choice(game_rounds)
+      last_rounds = game_rounds.order(created_at: :desc).limit(3)
       return %w[rock paper scissor].sample if last_rounds.empty?
 
       choices = last_rounds.map(&:choice)
