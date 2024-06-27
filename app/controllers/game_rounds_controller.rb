@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class GameRoundsController < ApplicationController
+  before_action :reset_game_rounds
+
   def index
     game_round = GameRound.all
 
@@ -51,28 +53,33 @@ class GameRoundsController < ApplicationController
       pattern_length = 3
       return %w[rock paper scissor].sample if choices.size < pattern_length
 
-      (0..choices.size - pattern_length).each do |idx|
+      (0..choices.size - 1).each do |idx|
         pattern = choices[idx, pattern_length]
-        next_choice_index = idx + pattern_length
+        next_choice_index = idx + (pattern_length - 1)
 
-        next if next_choice_index >= choices.size
-        return choices[next_choice_index] if choices[0, pattern_length] == pattern
-
-        choice_count = Hash.new(0)
-        choices.each { |choice| choice_count[choice] += 1 }
-        choice_count.max_by { |_, count| count }.first || %w[rock paper scissor].sample
+        if choices[0, pattern_length] == pattern && next_choice_index < choices.size
+          return choices[next_choice_index]
+        end
       end
+
+      choice_count = Hash.new(0)
+      choices.each { |choice| choice_count[choice] += 1 }
+      choice_count.max_by { |_, count| count }.first || %w[rock paper scissor].sample
     end
 
     def determine_winner(choice, ai_choice)
       if choice == ai_choice
         "tie"
       elsif (choice == "rock" && ai_choice == "paper") ||
-        (choice == "paper" && ai_choice == "scissors") ||
-        (choice == "scissors" && ai_choice == "rock")
+        (choice == "paper" && ai_choice == "scissor") ||
+        (choice == "scissor" && ai_choice == "rock")
         "lose"
       else
         "win"
       end
+    end
+
+    def reset_game_rounds
+      GameRound.destroy_all if GameRound.all.size > 10
     end
 end
