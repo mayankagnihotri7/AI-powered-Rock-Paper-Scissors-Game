@@ -1,24 +1,37 @@
-# README
+# AI Powered Rock, Paper and Scissor Game
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation
 
-Things you may want to cover:
+- Step 1: Clone repo to local
 
-* Ruby version
+```
+git clone https://github.com/mayankagnihotri7/AI-powered-Rock-Paper-Scissors-Game.git
+```
 
-* System dependencies
+- Step 2: Install ruby 3.2.2
 
-* Configuration
+```
+rvm install $(cat .ruby-version)
+```
 
-* Database creation
+- Step 3: Install Node 18.12.0
 
-* Database initialization
+```
+nvm install $(cat .nvmrc)
+```
 
-* How to run the test suite
+- Step 4: Install gems
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle install
+```
 
-* Deployment instructions
+- Step 5: Install node packages
 
-* ...
+```
+yarn install
+```
+
+- Step 6: Boot up rails server using `rails server` or `rails s` and in another terminal window or tab run `./bin/webpacker-dev-server` to start webpacker
+
+- Step 7: Visit [`localhost:3000`](http://localhost:3000/) on your browser and start playing.
